@@ -6,7 +6,7 @@
 :set smarttab
 :set softtabstop=4
 :set mouse=a
-:set autoindent
+:set smartindent
 
 call plug#begin()
 
@@ -25,6 +25,7 @@ Plug 'https://github.com/jiangmiao/auto-pairs' " Auto pairs
 Plug 'turbio/bracey.vim' " Live server (Test)
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Coc autocompletion
 Plug 'https://github.com/Pocco81/auto-save.nvim' " Auto Save
+Plug 'https://github.com/othree/xml.vim' " Plugin for xml/html
 
 call plug#end()
 
@@ -32,23 +33,13 @@ nnoremap <C-f> :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 
+let g:surround_indent = "2"
+let g:surround_auto_indent = 1
+let g:surround_auto_pairs = "<:>,*:*,%:%"
+
 " NERDTree icons
 let g:NERDTreeDirArrowExpandable='+'
 let g:NERDTreeDirArrowExpandable='~'
-
-" Autosave
-" au BufRead,BufNewFile * let b:save_time = localtime()
-" au CursorHold * call UpdateFile()
-let g:autosave_time = 0.1
-" 	if((localtime() - b:save_time) >= g:autosave_time)
-" 		update
-" 		let b:save_time = localtime()
-" 	else
-" 		" just debugging info
-" 		echo "[+] ". (localtime() - b:save_time) ." seconds have elapsed so far."
-" 	endif
-" endfunction
-
 
 " Refresh bracey
 let g:bracey_refresh_on_save = 1
