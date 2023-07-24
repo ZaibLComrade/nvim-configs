@@ -7,6 +7,7 @@
 :set softtabstop=4
 :set mouse=a
 :set smartindent
+:set foldmethod=marker
 
 call plug#begin()
 
@@ -26,6 +27,7 @@ Plug 'turbio/bracey.vim' " Live server (Test)
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Coc autocompletion
 Plug 'https://github.com/Pocco81/auto-save.nvim' " Auto Save
 Plug 'https://github.com/othree/xml.vim' " Plugin for xml/html
+Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'} " Git plugin for coc git extension
 
 call plug#end()
 
