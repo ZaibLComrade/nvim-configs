@@ -1,7 +1,0 @@
-{
-	"tailwindCSS.includeLanguages" : {
-		"html": "html",
-		"vue": "html"
-	},
-	"suggest.enablePreselect": false
-}
