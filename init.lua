@@ -149,7 +149,7 @@ vim.opt.splitbelow = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { tab = '| ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = '│ ', trail = '·', nbsp = '␣' }
 
 -- Tab options
 vim.opt.expandtab = true -- Use spaces instead of tabs
@@ -359,6 +359,20 @@ require('lazy').setup({
     end,
   },
 
+  -- Prettier for auto-formatting
+  {
+    'jose-elias-alvarez/null-ls.nvim', -- Linter and Formatter for Neovim
+    config = function()
+      local null_ls = require 'null-ls'
+      null_ls.setup {
+        sources = {
+          null_ls.builtins.formatting.prettier, -- Use Prettier for formatting
+          null_ls.builtins.diagnostics.eslint, -- Use ESLint for diagnostics
+        },
+      }
+    end,
+  },
+
   -- Discord presence with Coc
   {
     'neoclide/coc.nvim',
@@ -509,7 +523,8 @@ require('lazy').setup({
       -- See `:help telescope` and `:help telescope.setup()`
       require('telescope').setup {
         -- You can put your default mappings / updates / etc. in here
-        --  All the info you're looking for is in `:help telescope.setup()`
+        -- s.feedkeys".run(2)
+        -- All the info you're looking for is in `:help telescope.setup()`
         --
         -- defaults = {
         --   mappings = {
@@ -782,6 +797,21 @@ require('lazy').setup({
         jsonls = {},
         bashls = {},
         pyright = {},
+        ts_ls = {},
+        eslint = {
+          settings = {
+            rules = {
+              -- ESLint configuration to allow variables and arguments starting with `_` to be unused
+              ['no-unused-vars'] = {
+                'warn',
+                {
+                  varsIgnorePattern = '^_',
+                  argsIgnorePattern = '^_',
+                },
+              },
+            },
+          },
+        },
         -- gopls = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
