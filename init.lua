@@ -373,29 +373,56 @@ require('lazy').setup({
     end,
   },
 
-  -- Discord presence with Coc
-  {
-    'neoclide/coc.nvim',
-    branch = 'release',
-    build = ':CocInstall coc-discord-rpc',
+  { -- Discord presence
+    'andweeb/presence.nvim',
+    -- WARN: DO NOT assign a custom client
     config = function()
-      -- Install only coc-discord-presence
-      vim.g.coc_global_extensions = { 'coc-discord-rpc' }
+      require('presence').setup {
+        auto_update = true, -- Auto-update your presence status
+        neovim_image_text = 'Plexton is heking NASA', -- Custom text for the Neovim logo
+        main_image = 'file', -- Display Neovim icon
+        log_level = 'info', -- Logging level
+        debounce_timeout = 10, -- Debounce time for presence updates
+        file_assets = {},
 
-      -- Configure Discord presence settings in Lua
-      vim.g.coc_user_config = {
-        discord = {
-          enabled = true,
-          detailsEditing = 'Editing %file',
-          detailsIdle = 'Idling',
-          idleTimeout = 60,
-          workspaceEditing = 'Working on %workspace',
-          fileIdle = 'Looking at %file',
-          showTimestamp = true,
-        },
+        -- Rich Presence text options
+        editing_text = 'Editing %s',
+        file_explorer_text = 'Browsing %s',
+        git_commit_text = 'Committing changes',
+        plugin_manager_text = 'Managing plugins',
+        reading_text = 'Reading %s',
+        workspace_text = 'Working on %s',
+        line_number_text = 'Line %s/%s',
       }
     end,
   },
+
+  -- Discord presence with Coc
+  -- {
+  --   'neoclide/coc.nvim',
+  --   branch = 'release',
+  --   build = ':CocInstall coc-discord-rpc',
+  --   config = function()
+  --     -- Install only coc-discord-presence
+  --     vim.g.coc_global_extensions = { 'coc-discord-rpc' }
+  --
+  --     -- Configure Discord presence settings in Lua
+  --     vim.g.coc_user_config = {
+  --       discord = {
+  --         enabled = true,
+  --         detailsEditing = 'Editing %file',
+  --         detailsIdle = 'Idling',
+  --         idleTimeout = 60,
+  --         workspaceEditing = 'Working on %workspace',
+  --         fileIdle = 'Looking at %file',
+  --         showTimestamp = true,
+  --       },
+  --     }
+  --
+  --     vim.api.nvim_set_keymap('i', '<Tab>', 'coc#pum#visible() ? coc#pum#confirm() : "\\<Tab>"', { expr = true, silent = true, noremap = true })
+  --     vim.api.nvim_set_keymap('i', '<S-Tab>', 'coc#pum#visible() ? "\\<C-p>" : "\\<S-Tab>"', { expr = true, silent = true, noremap = true })
+  --   end,
+  -- },
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
