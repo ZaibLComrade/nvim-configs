@@ -164,7 +164,7 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 5
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
@@ -360,18 +360,18 @@ require('lazy').setup({
   },
 
   -- Prettier for auto-formatting
-  {
-    'jose-elias-alvarez/null-ls.nvim', -- Linter and Formatter for Neovim
-    config = function()
-      local null_ls = require 'null-ls'
-      null_ls.setup {
-        sources = {
-          null_ls.builtins.formatting.prettier, -- Use Prettier for formatting
-          null_ls.builtins.diagnostics.eslint, -- Use ESLint for diagnostics
-        },
-      }
-    end,
-  },
+  -- {
+  --   'jose-elias-alvarez/null-ls.nvim', -- Linter and Formatter for Neovim
+  --   config = function()
+  --     local null_ls = require 'null-ls'
+  --     null_ls.setup {
+  --       sources = {
+  --         null_ls.builtins.formatting.prettier, -- Use Prettier for formatting
+  --         null_ls.builtins.diagnostics.eslint, -- Use ESLint for diagnostics
+  --       },
+  --     }
+  --   end,
+  -- },
 
   { -- Discord presence
     'andweeb/presence.nvim',
@@ -824,6 +824,8 @@ require('lazy').setup({
         jsonls = {},
         bashls = {},
         pyright = {},
+        prismals = {},
+        dartls = {},
         ts_ls = {},
         eslint = {
           settings = {
